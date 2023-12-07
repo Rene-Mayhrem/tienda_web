@@ -1,29 +1,38 @@
 import './App.css';
-import { Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/home/Home';
+import SaleArticle from './pages/article/SaleArticle';
+
 
 
 function App() {
   return (
     <div className="App">
-      {/* <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand">Navbar</Link>
-          <Link>data</Link>
+          <a className="navbar-brand">Navbar</a>
+          <a>data</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <Link className="nav-link active">Home</Link>
-              <Link className="nav-link" >Features</Link>
-              <Link className="nav-link" >Pricing</Link>
-              <Link className="nav-link disabled" >Disabled</Link>
+              <a className="nav-a active">Home</a>
+              <a className="nav-a" >Features</a>
+              <a className="nav-a" >Pricing</a>
+              <a className="nav-a disabled" >Disabled</a>
             </div>
           </div>
         </div>
-      </nav> */}
+      </nav>
       {/* route section */}
-
+      <Router>
+        <Routes>
+          <Route exac path="/" element={<Home />} />
+          <Route exac path="/venta-articulo" element={<SaleArticle />} />
+          
+        </Routes>
+      </Router>
     </div>
   );
 }
