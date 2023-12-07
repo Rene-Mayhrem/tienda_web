@@ -3,11 +3,31 @@
     position: relative;
     width: 95%;
     height: auto;
-    border: 1px solid black;
+    left: 2%;
     align-self: center;
-    left: 2.5%;
-    top: 5em;
     overflow-y: auto;
     overflow-x: auto;
     flex-wrap: wrap;
 }
+
+.header-selector-container {
+    display: flex;
+    gap: 4em;
+    margin: 3em;
+}
+
+.form-select {
+    width: 20%;
+}
+
+.btn-shopping-cart {
+    position: relative;
+    justify-content: end;
+    left: 65%;
+    width: 10%;
+    border-radius: 10px;
+    background-color: #097bee;
+    color: whitesmoke;
+    border: none;
+}
+

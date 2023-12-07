@@ -25,17 +25,6 @@ const Home = () => {
     console.log(event.target.value);
   };
 
-  // ! Articles object - API
-  // const [articles, setArticles] = useState([]);
-  // // ? load articles
-  // useEffect(() => {
-  //   loadArticles();
-  // });
-  // ? API [GET] request -> http://localhost:8080/articulo
-  // const loadArticles = async () => {
-  //   const result = await axios.get(`${url}articulo`);
-  //   setArticles(result.data);
-  // };
   //! Articles by Categories - API
   const [articlesByCategory, setArticlesByCategory] = useState([]);
   //? load articles by categories
@@ -44,32 +33,36 @@ const Home = () => {
   });
   //? API [GET] request -> http://localhost:8080/articulo-categoria/{id}
   const loadArticleByCategory = async () => {
-    if(categoryFilter.length !== 0) {
-      const result = await axios.get(`${url}articulo-categoria/${categoryFilter}`);
+    if (categoryFilter.length !== 0) {
+      const result = await axios.get(
+        `${url}articulo-categoria/${categoryFilter}`
+      );
       setArticlesByCategory(result.data);
     } else {
       const result = await axios.get(`${url}articulo-categoria`);
-    setArticlesByCategory(result.data);
+      setArticlesByCategory(result.data);
     }
-  }
-  return (  
+  };
+  return (
     <div>
       {/* filter section */}
-      <select
-        className="form-select"
-        aria-label="Selecciona una categoria"
-        name="category-filter"
-        value={categoryFilter}
-        onChange={handleCategoryChangeFilter}
-      >
-        <option value="">Selecciona categoria</option>
-        {categories.map((category, key) => (
-          <option key={key} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-
+      <div className="header-selector-container">
+        <select
+          className="form-select"
+          aria-label="Selecciona una categoria"
+          name="category-filter"
+          value={categoryFilter}
+          onChange={handleCategoryChangeFilter}
+        >
+          <option value="">Selecciona categoria</option>
+          {categories.map((category, key) => (
+            <option key={key} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+        <button className="btn-shopping-cart">Ver carrito</button>
+      </div>
       <div className="card-list">
         {articlesByCategory.map((articleByCategory, key) => (
           <div>
@@ -77,7 +70,6 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <h3>Datos de compra</h3>
     </div>
   );
 };
