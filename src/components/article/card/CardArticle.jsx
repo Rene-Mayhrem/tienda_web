@@ -26,18 +26,22 @@ const CardArticle = ({ article }) => {
 
   //! handle sale event
   const handleSale = () => {
-    const data = [
-      {
-        id_employee: 1,
-        id_client: 0,
-        sheet: '',
-        amount: 0,
-        fecha: '',
-        id_payment_type: 0,
-        id_direccion_cliente: 0
-      }
-    ]
-    navigate("venta-articulo", {state: {saleDetails: data}} )
+    // const clientData = [
+    //   {
+    //     id_employee: 1,
+    //     id_client: 0,
+    //     sheet: '',
+    //     amount: 0,
+    //     fecha: '',
+    //     id_payment_type: 0,
+    //     id_direccion_cliente: 0
+    //   }
+    // ]
+    const saleData = {
+      article: article,
+      quantity: selectedItems
+    }
+    navigate("venta-articulo", {state: {sale: [saleData]}})
   }
 
 
