@@ -77,6 +77,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <h3>Datos de compra</h3>
     </div>
   );
 };
