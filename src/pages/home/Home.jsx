@@ -22,20 +22,37 @@ const Home = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const handleCategoryChangeFilter = (event) => {
     setCategoryFilter(event.target.value);
+    console.log(event.target.value);
   };
 
   // ! Articles object - API
-  const [articles, setArticles] = useState([]);
-  // ? load articles
-  useEffect(() => {
-    loadArticles();
-  });
+  // const [articles, setArticles] = useState([]);
+  // // ? load articles
+  // useEffect(() => {
+  //   loadArticles();
+  // });
   // ? API [GET] request -> http://localhost:8080/articulo
-  const loadArticles = async () => {
-    const result = await axios.get(`${url}articulo`);
-    setArticles(result.data);
-  };
-  return (
+  // const loadArticles = async () => {
+  //   const result = await axios.get(`${url}articulo`);
+  //   setArticles(result.data);
+  // };
+  //! Articles by Categories - API
+  const [articlesByCategory, setArticlesByCategory] = useState([]);
+  //? load articles by categories
+  useEffect(() => {
+    loadArticleByCategory();
+  });
+  //? API [GET] request -> http://localhost:8080/articulo-categoria/{id}
+  const loadArticleByCategory = async () => {
+    if(categoryFilter.length !== 0) {
+      const result = await axios.get(`${url}articulo-categoria/${categoryFilter}`);
+      setArticlesByCategory(result.data);
+    } else {
+      const result = await axios.get(`${url}articulo-categoria`);
+    setArticlesByCategory(result.data);
+    }
+  }
+  return (  
     <div>
       {/* filter section */}
       <select
@@ -47,16 +64,16 @@ const Home = () => {
       >
         <option value="">Selecciona categoria</option>
         {categories.map((category, key) => (
-          <option key={key} value={category.name}>
+          <option key={key} value={category.id}>
             {category.name}
           </option>
         ))}
       </select>
 
       <div className="card-list">
-        {articles.map((article, key) => (
+        {articlesByCategory.map((articleByCategory, key) => (
           <div>
-            <CardArticle key={key} article={article} />
+            <CardArticle key={key} article={articleByCategory.article} />
           </div>
         ))}
       </div>
